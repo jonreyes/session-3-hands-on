@@ -568,7 +568,7 @@
           }
           return element;
         };
-        function createElement2(type, config, children) {
+        function createElement(type, config, children) {
           var propName;
           var props = {};
           var key = null;
@@ -1004,26 +1004,26 @@
           }
           return lazyType;
         }
-        function forwardRef(render2) {
+        function forwardRef(render) {
           {
-            if (render2 != null && render2.$$typeof === REACT_MEMO_TYPE) {
+            if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
               error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
-            } else if (typeof render2 !== "function") {
-              error("forwardRef requires a render function but was given %s.", render2 === null ? "null" : typeof render2);
+            } else if (typeof render !== "function") {
+              error("forwardRef requires a render function but was given %s.", render === null ? "null" : typeof render);
             } else {
-              if (render2.length !== 0 && render2.length !== 2) {
-                error("forwardRef render functions accept exactly two parameters: props and ref. %s", render2.length === 1 ? "Did you forget to use the ref parameter?" : "Any additional parameter will be undefined.");
+              if (render.length !== 0 && render.length !== 2) {
+                error("forwardRef render functions accept exactly two parameters: props and ref. %s", render.length === 1 ? "Did you forget to use the ref parameter?" : "Any additional parameter will be undefined.");
               }
             }
-            if (render2 != null) {
-              if (render2.defaultProps != null || render2.propTypes != null) {
+            if (render != null) {
+              if (render.defaultProps != null || render.propTypes != null) {
                 error("forwardRef render functions do not support propTypes or defaultProps. Did you accidentally pass a React component?");
               }
             }
           }
           return {
             $$typeof: REACT_FORWARD_REF_TYPE,
-            render: render2
+            render
           };
         }
         function isValidElementType(type) {
@@ -1266,7 +1266,7 @@
               error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
             }
           }
-          var element = createElement2.apply(this, arguments);
+          var element = createElement.apply(this, arguments);
           if (element == null) {
             return element;
           }
@@ -6318,7 +6318,7 @@
             }
           }
         }
-        function createElement2(type, props, rootContainerElement, parentNamespace) {
+        function createElement(type, props, rootContainerElement, parentNamespace) {
           var isCustomComponentTag;
           var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
           var domElement;
@@ -7448,7 +7448,7 @@
             }
             parentNamespace = hostContextDev.namespace;
           }
-          var domElement = createElement2(type, props, rootContainerInstance, parentNamespace);
+          var domElement = createElement(type, props, rootContainerInstance, parentNamespace);
           precacheFiberNode(internalInstanceHandle, domElement);
           updateFiberProps(domElement, props);
           return domElement;
@@ -13923,17 +13923,17 @@
               }
             }
           }
-          var render3 = Component.render;
+          var render2 = Component.render;
           var ref = workInProgress2.ref;
           var nextChildren;
           prepareToReadContext(workInProgress2, renderExpirationTime2);
           {
             ReactCurrentOwner$1.current = workInProgress2;
             setIsRendering(true);
-            nextChildren = renderWithHooks(current2, workInProgress2, render3, nextProps, ref, renderExpirationTime2);
+            nextChildren = renderWithHooks(current2, workInProgress2, render2, nextProps, ref, renderExpirationTime2);
             if (workInProgress2.mode & StrictMode) {
               if (workInProgress2.memoizedState !== null) {
-                nextChildren = renderWithHooks(current2, workInProgress2, render3, nextProps, ref, renderExpirationTime2);
+                nextChildren = renderWithHooks(current2, workInProgress2, render2, nextProps, ref, renderExpirationTime2);
               }
             }
             setIsRendering(false);
@@ -14860,9 +14860,9 @@
             }
           }
           var newProps = workInProgress2.pendingProps;
-          var render3 = newProps.children;
+          var render2 = newProps.children;
           {
-            if (typeof render3 !== "function") {
+            if (typeof render2 !== "function") {
               error("A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.");
             }
           }
@@ -14872,7 +14872,7 @@
           {
             ReactCurrentOwner$1.current = workInProgress2;
             setIsRendering(true);
-            newChildren = render3(newValue);
+            newChildren = render2(newValue);
             setIsRendering(false);
           }
           workInProgress2.effectTag |= PerformedWork;
@@ -19170,7 +19170,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           }
           return legacyRenderSubtreeIntoContainer(null, element, container, true, callback);
         }
-        function render2(element, container, callback) {
+        function render(element, container, callback) {
           if (!isValidContainer(container)) {
             {
               throw Error("Target container is not a DOM element.");
@@ -19304,7 +19304,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         exports.findDOMNode = findDOMNode;
         exports.flushSync = flushSync;
         exports.hydrate = hydrate;
-        exports.render = render2;
+        exports.render = render;
         exports.unmountComponentAtNode = unmountComponentAtNode;
         exports.unstable_batchedUpdates = batchedUpdates$1;
         exports.unstable_createPortal = unstable_createPortal;
@@ -19328,10 +19328,5 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   // src/App.js
   const React = __toModule(require_react());
   const ReactDOM = __toModule(require_react_dom());
-  ReactDOM.render(React.createElement("div", {
-    className: "App"
-  }, React.createElement("header", {
-    className: "App-header"
-  }, React.createElement("h3", null, " React on Repl.it! "), React.createElement("p", null, "Edit ", React.createElement("code", null, "src/App.js"), " to get started!"))), document.getElementById("root"));
 })();
 //# sourceMappingURL=bundle.js.map
