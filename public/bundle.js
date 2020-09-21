@@ -568,7 +568,7 @@
           }
           return element;
         };
-        function createElement2(type, config, children) {
+        function createElement(type, config, children) {
           var propName;
           var props = {};
           var key = null;
@@ -1266,7 +1266,7 @@
               error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
             }
           }
-          var element = createElement2.apply(this, arguments);
+          var element = createElement.apply(this, arguments);
           if (element == null) {
             return element;
           }
@@ -6318,7 +6318,7 @@
             }
           }
         }
-        function createElement2(type, props, rootContainerElement, parentNamespace) {
+        function createElement(type, props, rootContainerElement, parentNamespace) {
           var isCustomComponentTag;
           var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
           var domElement;
@@ -7448,7 +7448,7 @@
             }
             parentNamespace = hostContextDev.namespace;
           }
-          var domElement = createElement2(type, props, rootContainerInstance, parentNamespace);
+          var domElement = createElement(type, props, rootContainerInstance, parentNamespace);
           precacheFiberNode(internalInstanceHandle, domElement);
           updateFiberProps(domElement, props);
           return domElement;
@@ -19328,14 +19328,6 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   // src/App.js
   const React = __toModule(require_react());
   const ReactDOM = __toModule(require_react_dom());
-  var reactElementWithoutJSX = React.createElement("div", {id: "main"}, [
-    React.createElement("h1", {id: "heading"}, "Hello World")
-  ]);
-  var reactElementWithJSX = React.createElement("div", {
-    className: "main"
-  }, React.createElement("h1", {
-    className: "heading"
-  }, "Hello World from JSX"));
   ReactDOM.render(reactElementWithoutJSX, document.getElementById("root"));
 })();
 //# sourceMappingURL=bundle.js.map
