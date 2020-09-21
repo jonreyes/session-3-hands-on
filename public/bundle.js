@@ -19328,10 +19328,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   // src/App.js
   const React = __toModule(require_react());
   const ReactDOM = __toModule(require_react_dom());
-  ReactDOM.render(React.createElement("div", {
-    className: "App"
-  }, React.createElement("header", {
-    className: "App-header"
-  }, React.createElement("h3", null, " React on Repl.it! "), React.createElement("p", null, "Edit ", React.createElement("code", null, "src/App.js"), " to get started!"))), document.getElementById("root"));
+  var reactElementWithoutJSX = React.createElement("div", {id: "main"}, [
+    React.createElement("h1", {id: "heading"}, "Hello World")
+  ]);
+  var reactElementWithJSX = React.createElement("div", {
+    className: "main"
+  }, React.createElement("h1", {
+    className: "heading"
+  }, "Hello World from JSX"));
+  ReactDOM.render(reactElementWithoutJSX, document.getElementById("root"));
 })();
 //# sourceMappingURL=bundle.js.map
