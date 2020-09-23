@@ -6,12 +6,12 @@ In this hands-on exercise, we will be learning how to pass props for functional 
 
 ### Part 1
 We will create a functional component called Greeting.js
-In this component our goal is to provide a greeting message like "Good Afternoon" by using props.
+Our goal is to provide a greeting message like "Good Afternoon" by using props.
 We will be passing the greeting as props from the App.js file
 
 ## Part 2
 We will create a class-based component
-In this component our goal is to print our name by using props
+Our goal is to print our name by using props
 We will be passing the greeting as props from the App.js file
 
 ## Part 3

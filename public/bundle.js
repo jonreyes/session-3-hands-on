@@ -19329,6 +19329,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   const React2 = __toModule(require_react());
   const ReactDOM2 = __toModule(require_react_dom());
   const Greetings = (props) => {
+    console.log(props);
     return React2.createElement("div", null, React2.createElement("h1", null, props.message));
   };
   const Greeting_default = Greetings;
