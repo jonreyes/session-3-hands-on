@@ -19356,8 +19356,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       super(props);
     }
     render() {
-      const {welcome, course} = this.props;
-      return React4.createElement("div", null, React4.createElement("p", null, welcome, " to ", course));
+      const {welcome, tutor, course} = this.props;
+      return React4.createElement("div", null, React4.createElement("p", null, welcome, " to ", course, " from ", tutor));
     }
   }
   const Welcome_default = Welcome2;
@@ -19373,9 +19373,10 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       return React.createElement("div", null, React.createElement(Greeting_default, {
         message: "Good Evening"
       }), React.createElement(Name_default, {
-        person: "Gokkul"
+        person: "John"
       }), React.createElement(Welcome_default, {
         welcome: "Welcome",
+        tutor: "Ask Apps",
         course: "React"
       }));
     }

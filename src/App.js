@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div>
           <Greeting message="Good Evening"/>
-          <Name person="Gokkul"/>
+          <Name person="John"/>
           <Welcome welcome="Welcome" tutor="Ask Apps" course="React" />
       </div>
     )
