@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // Import BioProfiles here
-import BioProfiles from "./BioProfiles";
 
 class App extends React.Component {
 	constructor(props) {
@@ -13,7 +12,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-          <BioProfiles />
       </div>
     )
   }

@@ -19,12 +19,12 @@ class BioProfiles extends React.Component {
 
               return (
                 <BioProfile
-                  key={index}
-                  name={name}
-                  age={age}
-                  dob={dob}
-                  country={country || 'United States'}
-                  skills={skills}
+                  key={}
+                  name={}
+                  age={}
+                  dob={}
+                  country={}
+                  skills={}
                 />
               )
 
@@ -36,4 +36,3 @@ class BioProfiles extends React.Component {
 }
 
 // Export BioProfiles Component
-export default BioProfiles;
