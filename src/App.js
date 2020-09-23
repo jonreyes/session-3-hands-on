@@ -1,8 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Greeting from "./Greeting";
-import Name from "./Name";
-import Welcome from "./Welcome";
 
 class App extends React.Component {
 	constructor(props) {
@@ -11,11 +8,6 @@ class App extends React.Component {
   
   render() {
     return (
-      <div>
-          <Greeting message="Good Evening"/>
-          <Name person="Gokkul"/>
-          <Welcome welcome="Welcome" course="React" />
-      </div>
     )
   }
 }
