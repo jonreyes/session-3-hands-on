@@ -1,13 +1,12 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-const Greetings = (props) => {
-  console.log(props);
+const Age = (props) => {
    return (
    <div>
-      <h1>{props.message}</h1>
+      <p><b>Age: </b>{props.age}</p>
    </div>
    )
 };
 
-export default Greetings;
+export default Age;

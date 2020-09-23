@@ -1,20 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Greeting from "./Greeting";
-import Name from "./Name";
-import Welcome from "./Welcome";
+// Import BioProfiles here
+import BioProfiles from "./BioProfiles";
 
 class App extends React.Component {
 	constructor(props) {
   	super(props);
   }
   
+  // Plugin the BioProfiles component within the div
+
   render() {
     return (
       <div>
-          <Greeting message="Good Evening"/>
-          <Name person="Gokkul"/>
-          <Welcome welcome="Welcome" tutor="Ask Apps" course="React" />
+          <BioProfiles />
       </div>
     )
   }

@@ -1,12 +1,12 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-const Name = (props) => {
+const Country = (props) => {
    return (
    <div>
-      <p><b>Name: </b>{props.name}</p>
+      <p>I am from {props.country}</p>
    </div>
    )
 };
 
-export default Name;
+export default Country;
