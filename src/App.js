@@ -1,6 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+// Comment out the below lines to create your functional component
+/*
 const FunctionalComponent = () => {
    return (
    <div className="main">
@@ -8,7 +10,9 @@ const FunctionalComponent = () => {
    </div>
    )
 };
+*/
 
+// Comment out the below lines to create your class-based component
 /*
 class ClassComponent extends React.Component {
 	constructor(props) {
