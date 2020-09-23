@@ -1,20 +1,9 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import Greeting from "./Greeting";
+import Name from "./Name";
 
-// Comment out the below lines to create your functional component
-/*
-const FunctionalComponent = () => {
-   return (
-   <div className="main">
-      <h1 className="heading">Hello World from FunctionalComponent</h1>
-   </div>
-   )
-};
-*/
-
-// Comment out the below lines to create your class-based component
-/*
-class ClassComponent extends React.Component {
+class App extends React.Component {
 	constructor(props) {
   	super(props);
   }
@@ -22,16 +11,14 @@ class ClassComponent extends React.Component {
   render() {
     return (
       <div>
-          <div className="main">
-            <h1 className="heading">Hello World from ClassComponent</h1>
-          </div>
+          <Greeting message="Good Evening"/>
+          <Name person="Gokkul"/>
       </div>
     )
   }
 }
-*/
 
 ReactDOM.render(
-  <FunctionalComponent />,
+  <App />,
   document.getElementById('root')
 );
