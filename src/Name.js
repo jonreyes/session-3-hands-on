@@ -7,7 +7,7 @@ class Name extends React.Component {
   }
   
   render() {
-
+    // console.log(this.props);
     const {person} = this.props;
 
     return (
