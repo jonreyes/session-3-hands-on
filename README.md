@@ -1,7 +1,7 @@
 ## React JS Hands-On Tutorials
 
 
-## Hands-On 3
+## Hands-On 3 Solution
 In this hands-on exercise, we will be learning how to pass props for functional and class-based components
 
 ### Part 1
