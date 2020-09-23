@@ -14,7 +14,7 @@ class App extends React.Component {
       <div>
           <Greeting message="Good Evening"/>
           <Name person="Gokkul"/>
-          <Welcome welcome="Welcome" course="React" />
+          <Welcome welcome="Welcome" tutor="Ask Apps" course="React" />
       </div>
     )
   }
