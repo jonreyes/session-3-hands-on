@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import BioProfile from "./BioProfile";
+import BioProfile from "./BioProfile.js";
 import { bioProfiles } from "./constants";
 
 class BioProfiles extends React.Component {
@@ -13,26 +13,27 @@ class BioProfiles extends React.Component {
 
     return (
       // Pass in the required props to BioProfile component
-        <div>
+        <>
           {
             profiles.map(({ name, age, dob, country, skills}, index) => {
 
               return (
                 <BioProfile
-                  key={}
-                  name={}
-                  age={}
-                  dob={}
-                  country={}
-                  skills={}
+                  key={index}
+                  name={name}
+                  age={age}
+                  dob={dob}
+                  country={country}
+                  skills={skills}
                 />
               )
 
             })
           }
-        </div>
+        </>
     )
   }
 }
 
 // Export BioProfiles Component
+export default BioProfiles;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // Import BioProfiles here
-
+import BioProfiles from "./BioProfiles.js";
 class App extends React.Component {
 	constructor(props) {
   	super(props);
@@ -11,8 +11,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-      </div>
+        <BioProfiles/>
     )
   }
 }

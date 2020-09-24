@@ -2573,7 +2573,7 @@
         var HostPortal = 4;
         var HostComponent = 5;
         var HostText = 6;
-        var Fragment = 7;
+        var Fragment2 = 7;
         var Mode = 8;
         var ContextConsumer = 9;
         var ContextProvider = 10;
@@ -3380,7 +3380,7 @@
             case HostRoot:
             case HostPortal:
             case HostText:
-            case Fragment:
+            case Fragment2:
             case ContextProvider:
             case ContextConsumer:
               return "";
@@ -9178,7 +9178,7 @@
             case HostComponent:
             case HostText:
             case HostPortal:
-            case Fragment:
+            case Fragment2:
             case ContextProvider:
             case ContextConsumer:
             case Mode:
@@ -11555,7 +11555,7 @@
             }
           }
           function updateFragment2(returnFiber, current2, fragment, expirationTime, key) {
-            if (current2 === null || current2.tag !== Fragment) {
+            if (current2 === null || current2.tag !== Fragment2) {
               var created = createFiberFromFragment(fragment, returnFiber.mode, expirationTime, key);
               created.return = returnFiber;
               return created;
@@ -11923,7 +11923,7 @@
             while (child !== null) {
               if (child.key === key) {
                 switch (child.tag) {
-                  case Fragment: {
+                  case Fragment2: {
                     if (element.type === REACT_FRAGMENT_TYPE) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
@@ -15081,7 +15081,7 @@
               var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
               return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderExpirationTime2);
             }
-            case Fragment:
+            case Fragment2:
               return updateFragment(current2, workInProgress2, renderExpirationTime2);
             case Mode:
               return updateMode(current2, workInProgress2, renderExpirationTime2);
@@ -15230,7 +15230,7 @@
             case SimpleMemoComponent:
             case FunctionComponent:
             case ForwardRef:
-            case Fragment:
+            case Fragment2:
             case Mode:
             case Profiler:
             case ContextConsumer:
@@ -18544,7 +18544,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           return fiber;
         }
         function createFiberFromFragment(elements, mode, expirationTime, key) {
-          var fiber = createFiber(Fragment, elements, key, mode);
+          var fiber = createFiber(Fragment2, elements, key, mode);
           fiber.expirationTime = expirationTime;
           return fiber;
         }
@@ -19328,16 +19328,25 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   // src/Name.js
   const React7 = __toModule(require_react());
   const ReactDOM7 = __toModule(require_react_dom());
-  const Name2 = (props) => {
-    return React7.createElement("div", null, React7.createElement("p", null, React7.createElement("b", null, "Name: "), props.name));
-  };
+  class Name2 extends React7.Component {
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return React7.createElement("p", null, React7.createElement("span", {
+        class: "label"
+      }, "Name: "), this.props.value);
+    }
+  }
   const Name_default = Name2;
 
   // src/Age.js
   const React = __toModule(require_react());
   const ReactDOM = __toModule(require_react_dom());
   const Age = (props) => {
-    return React.createElement("div", null, React.createElement("p", null, React.createElement("b", null, "Age: "), props.age));
+    return React.createElement("p", null, React.createElement("span", {
+      class: "label"
+    }, "Age:"), " ", props.value);
   };
   const Age_default = Age;
 
@@ -19349,10 +19358,11 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       super(props);
     }
     render() {
-      const {dob} = this.props;
-      const dobArray = dob.split("/");
-      const formattedDOB = [dobArray[1], dobArray[0], dobArray[2]].join("/");
-      return React6.createElement("div", null, React6.createElement("p", null, React6.createElement("b", null, "Date Of Birth: "), formattedDOB));
+      const [day, month, year] = this.props.value.split("/");
+      const fdob = month + "/" + day + "/" + year;
+      return React6.createElement("p", null, React6.createElement("span", {
+        class: "label"
+      }, "Date of Birth: "), fdob);
     }
   }
   const DateOfBirth_default = DateOfBirth2;
@@ -19361,22 +19371,20 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   const React5 = __toModule(require_react());
   const ReactDOM5 = __toModule(require_react_dom());
   const Country2 = (props) => {
-    return React5.createElement("div", null, React5.createElement("p", null, "I am from ", props.country));
+    let value = props.value;
+    if (value === "") {
+      value = "United States of America";
+    }
+    return React5.createElement("p", null, "I am from ", value);
   };
   const Country_default = Country2;
 
   // src/Skill.js
   const React8 = __toModule(require_react());
   const ReactDOM8 = __toModule(require_react_dom());
-  class Skill extends React8.Component {
-    constructor(props) {
-      super(props);
-    }
-    render() {
-      const {skill} = this.props;
-      return React8.createElement("ul", null, skill);
-    }
-  }
+  const Skill = (props) => {
+    return React8.createElement("p", null, "  ", props.value);
+  };
   const Skill_default = Skill;
 
   // src/Skills.js
@@ -19387,11 +19395,10 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       super(props);
     }
     render() {
-      var {skills} = this.props;
-      return React9.createElement("div", null, React9.createElement("p", null, "I am skilled in:"), skills.map((skill, index) => {
+      const skills = this.props.list;
+      return React9.createElement("p", null, "I am skilled in:", skills.map((skill) => {
         return React9.createElement(Skill_default, {
-          key: index,
-          skill
+          value: skill
         });
       }));
     }
@@ -19406,18 +19413,20 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       super(props);
     }
     render() {
-      var {name, age, dob, country, skills} = this.props;
-      return React3.createElement("div", null, React3.createElement(Name_default, {
-        name
+      const {index, name, age, dob, country, skills} = this.props;
+      return React3.createElement("div", {
+        class: "BioProfile"
+      }, React3.createElement(Name_default, {
+        value: name
       }), React3.createElement(Age_default, {
-        age
+        value: age
       }), React3.createElement(DateOfBirth_default, {
-        dob
+        value: dob
       }), React3.createElement(Country_default, {
-        country
+        value: country
       }), React3.createElement(Skills_default, {
-        skills
-      }), React3.createElement("hr", null));
+        list: skills
+      }));
     }
   }
   const BioProfile_default = BioProfile;
@@ -19428,7 +19437,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       name: "Jack",
       age: 21,
       dob: "28/04/1992",
-      country: "United States",
+      country: "United States of America",
       skills: ["HTML", "CSS", "JavaScript", "React"]
     },
     {
@@ -19456,13 +19465,13 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
     render() {
       var profiles = bioProfiles;
-      return React4.createElement("div", null, profiles.map(({name, age, dob, country, skills}, index) => {
+      return React4.createElement(React4.Fragment, null, profiles.map(({name, age, dob, country, skills}, index) => {
         return React4.createElement(BioProfile_default, {
           key: index,
           name,
           age,
           dob,
-          country: country || "United States",
+          country,
           skills
         });
       }));
@@ -19478,7 +19487,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       super(props);
     }
     render() {
-      return React2.createElement("div", null, React2.createElement(BioProfiles_default, null));
+      return React2.createElement(BioProfiles_default, null);
     }
   }
   ReactDOM2.render(React2.createElement(App, null), document.getElementById("root"));
