@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 // Comment out the below lines to create your functional component
-/*
+
 const FunctionalComponent = () => {
    return (
    <div className="main">
@@ -10,10 +10,9 @@ const FunctionalComponent = () => {
    </div>
    )
 };
-*/
 
 // Comment out the below lines to create your class-based component
-/*
+
 class ClassComponent extends React.Component {
 	constructor(props) {
   	super(props);
@@ -29,9 +28,43 @@ class ClassComponent extends React.Component {
     )
   }
 }
-*/
 
 ReactDOM.render(
   <FunctionalComponent />,
   document.getElementById('root')
 );
+ReactDOM.render(
+  <FunctionalComponent />,
+  document.getElementById('root')
+);
+
+const CustomFunctionalComponent = () => {
+  return (
+    <div id="CustomFunctionalComponent">
+      <p id="customtext">This is a custom Functional Component.</p>
+    </div>
+  )
+};
+
+ReactDOM.render(
+  <CustomFunctionalComponent/>,
+  document.getElementById('root')
+);
+
+class CustomClassComponent extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return(
+      <div id="CustomClassComponent">
+        <p id="customtext">This is a custom Class Component.</p>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <CustomClassComponent/>,
+  document.getElementById('root')
+)

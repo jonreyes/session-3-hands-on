@@ -19348,5 +19348,27 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
   }
   ReactDOM.render(React.createElement(FunctionalComponent, null), document.getElementById("root"));
+  ReactDOM.render(React.createElement(FunctionalComponent, null), document.getElementById("root"));
+  const CustomFunctionalComponent = () => {
+    return React.createElement("div", {
+      id: "CustomFunctionalComponent"
+    }, React.createElement("p", {
+      id: "customtext"
+    }, "This is a custom Functional Component."));
+  };
+  ReactDOM.render(React.createElement(CustomFunctionalComponent, null), document.getElementById("root"));
+  class CustomClassComponent extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return React.createElement("div", {
+        id: "CustomClassComponent"
+      }, React.createElement("p", {
+        id: "customtext"
+      }, "This is a custom Class Component."));
+    }
+  }
+  ReactDOM.render(React.createElement(CustomClassComponent, null), document.getElementById("root"));
 })();
 //# sourceMappingURL=bundle.js.map
