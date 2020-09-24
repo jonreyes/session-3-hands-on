@@ -568,7 +568,7 @@
           }
           return element;
         };
-        function createElement(type, config, children) {
+        function createElement2(type, config, children) {
           var propName;
           var props = {};
           var key = null;
@@ -1266,7 +1266,7 @@
               error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
             }
           }
-          var element = createElement.apply(this, arguments);
+          var element = createElement2.apply(this, arguments);
           if (element == null) {
             return element;
           }
@@ -4603,15 +4603,15 @@
               ancestors.push(ancestor);
               break;
             }
-            var root2 = findRootContainerNode(ancestor);
-            if (!root2) {
+            var root3 = findRootContainerNode(ancestor);
+            if (!root3) {
               break;
             }
             var tag = ancestor.tag;
             if (tag === HostComponent || tag === HostText) {
               bookKeeping.ancestors.push(ancestor);
             }
-            ancestor = getClosestInstanceFromNode(root2);
+            ancestor = getClosestInstanceFromNode(root3);
           } while (ancestor);
           for (var i = 0; i < bookKeeping.ancestors.length; i++) {
             targetInst = bookKeeping.ancestors[i];
@@ -4828,8 +4828,8 @@
                   return;
                 }
               } else if (tag === HostRoot) {
-                var root2 = nearestMounted.stateNode;
-                if (root2.hydrate) {
+                var root3 = nearestMounted.stateNode;
+                if (root3.hydrate) {
                   queuedTarget.blockedOn = getContainerFromFiber(nearestMounted);
                   return;
                 }
@@ -5067,8 +5067,8 @@
                 }
                 targetInst = null;
               } else if (tag === HostRoot) {
-                var root2 = nearestMounted.stateNode;
-                if (root2.hydrate) {
+                var root3 = nearestMounted.stateNode;
+                if (root3.hydrate) {
                   return getContainerFromFiber(nearestMounted);
                 }
                 targetInst = null;
@@ -6318,7 +6318,7 @@
             }
           }
         }
-        function createElement(type, props, rootContainerElement, parentNamespace) {
+        function createElement2(type, props, rootContainerElement, parentNamespace) {
           var isCustomComponentTag;
           var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
           var domElement;
@@ -6900,8 +6900,8 @@
             node = node.parentNode;
           }
         }
-        function getNodeForCharacterOffset(root2, offset) {
-          var node = getLeafNode(root2);
+        function getNodeForCharacterOffset(root3, offset) {
+          var node = getLeafNode(root3);
           var nodeStart = 0;
           var nodeEnd = 0;
           while (node) {
@@ -7390,8 +7390,8 @@
             case DOCUMENT_NODE:
             case DOCUMENT_FRAGMENT_NODE: {
               type = nodeType === DOCUMENT_NODE ? "#document" : "#fragment";
-              var root2 = rootContainerInstance.documentElement;
-              namespace = root2 ? root2.namespaceURI : getChildNamespace(null, "");
+              var root3 = rootContainerInstance.documentElement;
+              namespace = root3 ? root3.namespaceURI : getChildNamespace(null, "");
               break;
             }
             default: {
@@ -7448,7 +7448,7 @@
             }
             parentNamespace = hostContextDev.namespace;
           }
-          var domElement = createElement(type, props, rootContainerInstance, parentNamespace);
+          var domElement = createElement2(type, props, rootContainerInstance, parentNamespace);
           precacheFiberNode(internalInstanceHandle, domElement);
           updateFiberProps(domElement, props);
           return domElement;
@@ -7957,16 +7957,16 @@
         function accumulateDirectDispatches(events) {
           forEachAccumulated(events, accumulateDirectDispatchesSingle);
         }
-        var root = null;
+        var root2 = null;
         var startText = null;
         var fallbackText = null;
         function initialize(nativeEventTarget) {
-          root = nativeEventTarget;
+          root2 = nativeEventTarget;
           startText = getText();
           return true;
         }
         function reset() {
-          root = null;
+          root2 = null;
           startText = null;
           fallbackText = null;
         }
@@ -7996,10 +7996,10 @@
           return fallbackText;
         }
         function getText() {
-          if ("value" in root) {
-            return root.value;
+          if ("value" in root2) {
+            return root2.value;
           }
-          return root.textContent;
+          return root2.textContent;
         }
         var EVENT_POOL_SIZE = 10;
         var EventInterface = {
@@ -10116,7 +10116,7 @@
             failedBoundaries.add(fiber);
           }
         }
-        var scheduleRefresh = function(root2, update) {
+        var scheduleRefresh = function(root3, update) {
           {
             if (resolveFamily === null) {
               return;
@@ -10124,18 +10124,18 @@
             var staleFamilies = update.staleFamilies, updatedFamilies = update.updatedFamilies;
             flushPassiveEffects();
             flushSync(function() {
-              scheduleFibersWithFamiliesRecursively(root2.current, updatedFamilies, staleFamilies);
+              scheduleFibersWithFamiliesRecursively(root3.current, updatedFamilies, staleFamilies);
             });
           }
         };
-        var scheduleRoot = function(root2, element) {
+        var scheduleRoot = function(root3, element) {
           {
-            if (root2.context !== emptyContextObject) {
+            if (root3.context !== emptyContextObject) {
               return;
             }
             flushPassiveEffects();
             syncUpdates(function() {
-              updateContainer(element, root2, null, null);
+              updateContainer(element, root3, null, null);
             });
           }
         };
@@ -10191,13 +10191,13 @@
             }
           }
         }
-        var findHostInstancesForRefresh = function(root2, families) {
+        var findHostInstancesForRefresh = function(root3, families) {
           {
             var hostInstances = new Set();
             var types = new Set(families.map(function(family) {
               return family.current;
             }));
-            findHostInstancesForMatchingFibersRecursively(root2.current, types, hostInstances);
+            findHostInstancesForMatchingFibersRecursively(root3.current, types, hostInstances);
             return hostInstances;
           }
         };
@@ -14166,13 +14166,13 @@
           return workInProgress2.child;
         }
         function pushHostRootContext(workInProgress2) {
-          var root2 = workInProgress2.stateNode;
-          if (root2.pendingContext) {
-            pushTopLevelContextObject(workInProgress2, root2.pendingContext, root2.pendingContext !== root2.context);
-          } else if (root2.context) {
-            pushTopLevelContextObject(workInProgress2, root2.context, false);
+          var root3 = workInProgress2.stateNode;
+          if (root3.pendingContext) {
+            pushTopLevelContextObject(workInProgress2, root3.pendingContext, root3.pendingContext !== root3.context);
+          } else if (root3.context) {
+            pushTopLevelContextObject(workInProgress2, root3.context, false);
           }
-          pushHostContainer(workInProgress2, root2.containerInfo);
+          pushHostContainer(workInProgress2, root3.containerInfo);
         }
         function updateHostRoot(current2, workInProgress2, renderExpirationTime2) {
           pushHostRootContext(workInProgress2);
@@ -14193,8 +14193,8 @@
             resetHydrationState();
             return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderExpirationTime2);
           }
-          var root2 = workInProgress2.stateNode;
-          if (root2.hydrate && enterHydrationState(workInProgress2)) {
+          var root3 = workInProgress2.stateNode;
+          if (root3.hydrate && enterHydrationState(workInProgress2)) {
             var child = mountChildFibers(workInProgress2, null, nextChildren, renderExpirationTime2);
             workInProgress2.child = child;
             var node = child;
@@ -16056,8 +16056,8 @@
             }
           }
         }
-        function commitNestedUnmounts(finishedRoot, root2, renderPriorityLevel) {
-          var node = root2;
+        function commitNestedUnmounts(finishedRoot, root3, renderPriorityLevel) {
+          var node = root3;
           while (true) {
             commitUnmount(finishedRoot, node, renderPriorityLevel);
             if (node.child !== null && node.tag !== HostPortal) {
@@ -16065,11 +16065,11 @@
               node = node.child;
               continue;
             }
-            if (node === root2) {
+            if (node === root3) {
               return;
             }
             while (node.sibling === null) {
-              if (node.return === null || node.return === root2) {
+              if (node.return === null || node.return === root3) {
                 return;
               }
               node = node.return;
@@ -16484,11 +16484,11 @@
           }
           return update;
         }
-        function attachPingListener(root2, renderExpirationTime2, thenable) {
-          var pingCache = root2.pingCache;
+        function attachPingListener(root3, renderExpirationTime2, thenable) {
+          var pingCache = root3.pingCache;
           var threadIDs;
           if (pingCache === null) {
-            pingCache = root2.pingCache = new PossiblyWeakMap$1();
+            pingCache = root3.pingCache = new PossiblyWeakMap$1();
             threadIDs = new Set();
             pingCache.set(thenable, threadIDs);
           } else {
@@ -16500,11 +16500,11 @@
           }
           if (!threadIDs.has(renderExpirationTime2)) {
             threadIDs.add(renderExpirationTime2);
-            var ping = pingSuspendedRoot.bind(null, root2, thenable, renderExpirationTime2);
+            var ping = pingSuspendedRoot.bind(null, root3, thenable, renderExpirationTime2);
             thenable.then(ping, ping);
           }
         }
-        function throwException(root2, returnFiber, sourceFiber, value, renderExpirationTime2) {
+        function throwException(root3, returnFiber, sourceFiber, value, renderExpirationTime2) {
           sourceFiber.effectTag |= Incomplete;
           sourceFiber.firstEffect = sourceFiber.lastEffect = null;
           if (value !== null && typeof value === "object" && typeof value.then === "function") {
@@ -16548,7 +16548,7 @@
                   sourceFiber.expirationTime = Sync;
                   return;
                 }
-                attachPingListener(root2, renderExpirationTime2, thenable);
+                attachPingListener(root3, renderExpirationTime2, thenable);
                 _workInProgress.effectTag |= ShouldCapture;
                 _workInProgress.expirationTime = renderExpirationTime2;
                 return;
@@ -16689,8 +16689,8 @@
         function scheduleUpdateOnFiber(fiber, expirationTime) {
           checkForNestedUpdates();
           warnAboutRenderPhaseUpdatesInDEV(fiber);
-          var root2 = markUpdateTimeFromFiberToRoot(fiber, expirationTime);
-          if (root2 === null) {
+          var root3 = markUpdateTimeFromFiberToRoot(fiber, expirationTime);
+          if (root3 === null) {
             warnAboutUpdateOnUnmountedFiberInDEV(fiber);
             return;
           }
@@ -16699,26 +16699,26 @@
           var priorityLevel = getCurrentPriorityLevel();
           if (expirationTime === Sync) {
             if ((executionContext & LegacyUnbatchedContext) !== NoContext && (executionContext & (RenderContext | CommitContext)) === NoContext) {
-              schedulePendingInteractions(root2, expirationTime);
-              performSyncWorkOnRoot(root2);
+              schedulePendingInteractions(root3, expirationTime);
+              performSyncWorkOnRoot(root3);
             } else {
-              ensureRootIsScheduled(root2);
-              schedulePendingInteractions(root2, expirationTime);
+              ensureRootIsScheduled(root3);
+              schedulePendingInteractions(root3, expirationTime);
               if (executionContext === NoContext) {
                 flushSyncCallbackQueue();
               }
             }
           } else {
-            ensureRootIsScheduled(root2);
-            schedulePendingInteractions(root2, expirationTime);
+            ensureRootIsScheduled(root3);
+            schedulePendingInteractions(root3, expirationTime);
           }
           if ((executionContext & DiscreteEventContext) !== NoContext && (priorityLevel === UserBlockingPriority$1 || priorityLevel === ImmediatePriority)) {
             if (rootsWithPendingDiscreteUpdates === null) {
-              rootsWithPendingDiscreteUpdates = new Map([[root2, expirationTime]]);
+              rootsWithPendingDiscreteUpdates = new Map([[root3, expirationTime]]);
             } else {
-              var lastDiscreteTime = rootsWithPendingDiscreteUpdates.get(root2);
+              var lastDiscreteTime = rootsWithPendingDiscreteUpdates.get(root3);
               if (lastDiscreteTime === void 0 || lastDiscreteTime > expirationTime) {
-                rootsWithPendingDiscreteUpdates.set(root2, expirationTime);
+                rootsWithPendingDiscreteUpdates.set(root3, expirationTime);
               }
             }
           }
@@ -16733,9 +16733,9 @@
             alternate.expirationTime = expirationTime;
           }
           var node = fiber.return;
-          var root2 = null;
+          var root3 = null;
           if (node === null && fiber.tag === HostRoot) {
-            root2 = fiber.stateNode;
+            root3 = fiber.stateNode;
           } else {
             while (node !== null) {
               alternate = node.alternate;
@@ -16748,113 +16748,113 @@
                 alternate.childExpirationTime = expirationTime;
               }
               if (node.return === null && node.tag === HostRoot) {
-                root2 = node.stateNode;
+                root3 = node.stateNode;
                 break;
               }
               node = node.return;
             }
           }
-          if (root2 !== null) {
-            if (workInProgressRoot === root2) {
+          if (root3 !== null) {
+            if (workInProgressRoot === root3) {
               markUnprocessedUpdateTime(expirationTime);
               if (workInProgressRootExitStatus === RootSuspendedWithDelay) {
-                markRootSuspendedAtTime(root2, renderExpirationTime$1);
+                markRootSuspendedAtTime(root3, renderExpirationTime$1);
               }
             }
-            markRootUpdatedAtTime(root2, expirationTime);
+            markRootUpdatedAtTime(root3, expirationTime);
           }
-          return root2;
+          return root3;
         }
-        function getNextRootExpirationTimeToWorkOn(root2) {
-          var lastExpiredTime = root2.lastExpiredTime;
+        function getNextRootExpirationTimeToWorkOn(root3) {
+          var lastExpiredTime = root3.lastExpiredTime;
           if (lastExpiredTime !== NoWork) {
             return lastExpiredTime;
           }
-          var firstPendingTime = root2.firstPendingTime;
-          if (!isRootSuspendedAtTime(root2, firstPendingTime)) {
+          var firstPendingTime = root3.firstPendingTime;
+          if (!isRootSuspendedAtTime(root3, firstPendingTime)) {
             return firstPendingTime;
           }
-          var lastPingedTime = root2.lastPingedTime;
-          var nextKnownPendingLevel = root2.nextKnownPendingLevel;
+          var lastPingedTime = root3.lastPingedTime;
+          var nextKnownPendingLevel = root3.nextKnownPendingLevel;
           var nextLevel = lastPingedTime > nextKnownPendingLevel ? lastPingedTime : nextKnownPendingLevel;
           if (nextLevel <= Idle && firstPendingTime !== nextLevel) {
             return NoWork;
           }
           return nextLevel;
         }
-        function ensureRootIsScheduled(root2) {
-          var lastExpiredTime = root2.lastExpiredTime;
+        function ensureRootIsScheduled(root3) {
+          var lastExpiredTime = root3.lastExpiredTime;
           if (lastExpiredTime !== NoWork) {
-            root2.callbackExpirationTime = Sync;
-            root2.callbackPriority = ImmediatePriority;
-            root2.callbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root2));
+            root3.callbackExpirationTime = Sync;
+            root3.callbackPriority = ImmediatePriority;
+            root3.callbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root3));
             return;
           }
-          var expirationTime = getNextRootExpirationTimeToWorkOn(root2);
-          var existingCallbackNode = root2.callbackNode;
+          var expirationTime = getNextRootExpirationTimeToWorkOn(root3);
+          var existingCallbackNode = root3.callbackNode;
           if (expirationTime === NoWork) {
             if (existingCallbackNode !== null) {
-              root2.callbackNode = null;
-              root2.callbackExpirationTime = NoWork;
-              root2.callbackPriority = NoPriority;
+              root3.callbackNode = null;
+              root3.callbackExpirationTime = NoWork;
+              root3.callbackPriority = NoPriority;
             }
             return;
           }
           var currentTime = requestCurrentTimeForUpdate();
           var priorityLevel = inferPriorityFromExpirationTime(currentTime, expirationTime);
           if (existingCallbackNode !== null) {
-            var existingCallbackPriority = root2.callbackPriority;
-            var existingCallbackExpirationTime = root2.callbackExpirationTime;
+            var existingCallbackPriority = root3.callbackPriority;
+            var existingCallbackExpirationTime = root3.callbackExpirationTime;
             if (existingCallbackExpirationTime === expirationTime && existingCallbackPriority >= priorityLevel) {
               return;
             }
             cancelCallback(existingCallbackNode);
           }
-          root2.callbackExpirationTime = expirationTime;
-          root2.callbackPriority = priorityLevel;
+          root3.callbackExpirationTime = expirationTime;
+          root3.callbackPriority = priorityLevel;
           var callbackNode;
           if (expirationTime === Sync) {
-            callbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root2));
+            callbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root3));
           } else {
-            callbackNode = scheduleCallback(priorityLevel, performConcurrentWorkOnRoot.bind(null, root2), {
+            callbackNode = scheduleCallback(priorityLevel, performConcurrentWorkOnRoot.bind(null, root3), {
               timeout: expirationTimeToMs(expirationTime) - now()
             });
           }
-          root2.callbackNode = callbackNode;
+          root3.callbackNode = callbackNode;
         }
-        function performConcurrentWorkOnRoot(root2, didTimeout) {
+        function performConcurrentWorkOnRoot(root3, didTimeout) {
           currentEventTime = NoWork;
           if (didTimeout) {
             var currentTime = requestCurrentTimeForUpdate();
-            markRootExpiredAtTime(root2, currentTime);
-            ensureRootIsScheduled(root2);
+            markRootExpiredAtTime(root3, currentTime);
+            ensureRootIsScheduled(root3);
             return null;
           }
-          var expirationTime = getNextRootExpirationTimeToWorkOn(root2);
+          var expirationTime = getNextRootExpirationTimeToWorkOn(root3);
           if (expirationTime !== NoWork) {
-            var originalCallbackNode = root2.callbackNode;
+            var originalCallbackNode = root3.callbackNode;
             if (!((executionContext & (RenderContext | CommitContext)) === NoContext)) {
               {
                 throw Error("Should not already be working.");
               }
             }
             flushPassiveEffects();
-            if (root2 !== workInProgressRoot || expirationTime !== renderExpirationTime$1) {
-              prepareFreshStack(root2, expirationTime);
-              startWorkOnPendingInteractions(root2, expirationTime);
+            if (root3 !== workInProgressRoot || expirationTime !== renderExpirationTime$1) {
+              prepareFreshStack(root3, expirationTime);
+              startWorkOnPendingInteractions(root3, expirationTime);
             }
             if (workInProgress !== null) {
               var prevExecutionContext = executionContext;
               executionContext |= RenderContext;
               var prevDispatcher = pushDispatcher();
-              var prevInteractions = pushInteractions(root2);
+              var prevInteractions = pushInteractions(root3);
               startWorkLoopTimer(workInProgress);
               do {
                 try {
                   workLoopConcurrent();
                   break;
                 } catch (thrownValue) {
-                  handleError(root2, thrownValue);
+                  handleError(root3, thrownValue);
                 }
               } while (true);
               resetContextDependencies();
@@ -16866,28 +16866,28 @@
               if (workInProgressRootExitStatus === RootFatalErrored) {
                 var fatalError = workInProgressRootFatalError;
                 stopInterruptedWorkLoopTimer();
-                prepareFreshStack(root2, expirationTime);
-                markRootSuspendedAtTime(root2, expirationTime);
-                ensureRootIsScheduled(root2);
+                prepareFreshStack(root3, expirationTime);
+                markRootSuspendedAtTime(root3, expirationTime);
+                ensureRootIsScheduled(root3);
                 throw fatalError;
               }
               if (workInProgress !== null) {
                 stopInterruptedWorkLoopTimer();
               } else {
                 stopFinishedWorkLoopTimer();
-                var finishedWork = root2.finishedWork = root2.current.alternate;
-                root2.finishedExpirationTime = expirationTime;
-                finishConcurrentRender(root2, finishedWork, workInProgressRootExitStatus, expirationTime);
+                var finishedWork = root3.finishedWork = root3.current.alternate;
+                root3.finishedExpirationTime = expirationTime;
+                finishConcurrentRender(root3, finishedWork, workInProgressRootExitStatus, expirationTime);
               }
-              ensureRootIsScheduled(root2);
-              if (root2.callbackNode === originalCallbackNode) {
-                return performConcurrentWorkOnRoot.bind(null, root2);
+              ensureRootIsScheduled(root3);
+              if (root3.callbackNode === originalCallbackNode) {
+                return performConcurrentWorkOnRoot.bind(null, root3);
               }
             }
           }
           return null;
         }
-        function finishConcurrentRender(root2, finishedWork, exitStatus, expirationTime) {
+        function finishConcurrentRender(root3, finishedWork, exitStatus, expirationTime) {
           workInProgressRoot = null;
           switch (exitStatus) {
             case RootIncomplete:
@@ -16899,63 +16899,63 @@
               }
             }
             case RootErrored: {
-              markRootExpiredAtTime(root2, expirationTime > Idle ? Idle : expirationTime);
+              markRootExpiredAtTime(root3, expirationTime > Idle ? Idle : expirationTime);
               break;
             }
             case RootSuspended: {
-              markRootSuspendedAtTime(root2, expirationTime);
-              var lastSuspendedTime = root2.lastSuspendedTime;
+              markRootSuspendedAtTime(root3, expirationTime);
+              var lastSuspendedTime = root3.lastSuspendedTime;
               if (expirationTime === lastSuspendedTime) {
-                root2.nextKnownPendingLevel = getRemainingExpirationTime(finishedWork);
+                root3.nextKnownPendingLevel = getRemainingExpirationTime(finishedWork);
               }
               var hasNotProcessedNewUpdates = workInProgressRootLatestProcessedExpirationTime === Sync;
               if (hasNotProcessedNewUpdates && !IsThisRendererActing.current) {
                 var msUntilTimeout = globalMostRecentFallbackTime + FALLBACK_THROTTLE_MS - now();
                 if (msUntilTimeout > 10) {
                   if (workInProgressRootHasPendingPing) {
-                    var lastPingedTime = root2.lastPingedTime;
+                    var lastPingedTime = root3.lastPingedTime;
                     if (lastPingedTime === NoWork || lastPingedTime >= expirationTime) {
-                      root2.lastPingedTime = expirationTime;
-                      prepareFreshStack(root2, expirationTime);
+                      root3.lastPingedTime = expirationTime;
+                      prepareFreshStack(root3, expirationTime);
                       break;
                     }
                   }
-                  var nextTime = getNextRootExpirationTimeToWorkOn(root2);
+                  var nextTime = getNextRootExpirationTimeToWorkOn(root3);
                   if (nextTime !== NoWork && nextTime !== expirationTime) {
                     break;
                   }
                   if (lastSuspendedTime !== NoWork && lastSuspendedTime !== expirationTime) {
-                    root2.lastPingedTime = lastSuspendedTime;
+                    root3.lastPingedTime = lastSuspendedTime;
                     break;
                   }
-                  root2.timeoutHandle = scheduleTimeout(commitRoot.bind(null, root2), msUntilTimeout);
+                  root3.timeoutHandle = scheduleTimeout(commitRoot.bind(null, root3), msUntilTimeout);
                   break;
                 }
               }
-              commitRoot(root2);
+              commitRoot(root3);
               break;
             }
             case RootSuspendedWithDelay: {
-              markRootSuspendedAtTime(root2, expirationTime);
-              var _lastSuspendedTime = root2.lastSuspendedTime;
+              markRootSuspendedAtTime(root3, expirationTime);
+              var _lastSuspendedTime = root3.lastSuspendedTime;
               if (expirationTime === _lastSuspendedTime) {
-                root2.nextKnownPendingLevel = getRemainingExpirationTime(finishedWork);
+                root3.nextKnownPendingLevel = getRemainingExpirationTime(finishedWork);
               }
               if (!IsThisRendererActing.current) {
                 if (workInProgressRootHasPendingPing) {
-                  var _lastPingedTime = root2.lastPingedTime;
+                  var _lastPingedTime = root3.lastPingedTime;
                   if (_lastPingedTime === NoWork || _lastPingedTime >= expirationTime) {
-                    root2.lastPingedTime = expirationTime;
-                    prepareFreshStack(root2, expirationTime);
+                    root3.lastPingedTime = expirationTime;
+                    prepareFreshStack(root3, expirationTime);
                     break;
                   }
                 }
-                var _nextTime = getNextRootExpirationTimeToWorkOn(root2);
+                var _nextTime = getNextRootExpirationTimeToWorkOn(root3);
                 if (_nextTime !== NoWork && _nextTime !== expirationTime) {
                   break;
                 }
                 if (_lastSuspendedTime !== NoWork && _lastSuspendedTime !== expirationTime) {
-                  root2.lastPingedTime = _lastSuspendedTime;
+                  root3.lastPingedTime = _lastSuspendedTime;
                   break;
                 }
                 var _msUntilTimeout;
@@ -16977,23 +16977,23 @@
                   }
                 }
                 if (_msUntilTimeout > 10) {
-                  root2.timeoutHandle = scheduleTimeout(commitRoot.bind(null, root2), _msUntilTimeout);
+                  root3.timeoutHandle = scheduleTimeout(commitRoot.bind(null, root3), _msUntilTimeout);
                   break;
                 }
               }
-              commitRoot(root2);
+              commitRoot(root3);
               break;
             }
             case RootCompleted: {
               if (!IsThisRendererActing.current && workInProgressRootLatestProcessedExpirationTime !== Sync && workInProgressRootCanSuspendUsingConfig !== null) {
                 var _msUntilTimeout2 = computeMsUntilSuspenseLoadingDelay(workInProgressRootLatestProcessedExpirationTime, expirationTime, workInProgressRootCanSuspendUsingConfig);
                 if (_msUntilTimeout2 > 10) {
-                  markRootSuspendedAtTime(root2, expirationTime);
-                  root2.timeoutHandle = scheduleTimeout(commitRoot.bind(null, root2), _msUntilTimeout2);
+                  markRootSuspendedAtTime(root3, expirationTime);
+                  root3.timeoutHandle = scheduleTimeout(commitRoot.bind(null, root3), _msUntilTimeout2);
                   break;
                 }
               }
-              commitRoot(root2);
+              commitRoot(root3);
               break;
             }
             default: {
@@ -17005,8 +17005,8 @@
             }
           }
         }
-        function performSyncWorkOnRoot(root2) {
-          var lastExpiredTime = root2.lastExpiredTime;
+        function performSyncWorkOnRoot(root3) {
+          var lastExpiredTime = root3.lastExpiredTime;
           var expirationTime = lastExpiredTime !== NoWork ? lastExpiredTime : Sync;
           if (!((executionContext & (RenderContext | CommitContext)) === NoContext)) {
             {
@@ -17014,22 +17014,22 @@
             }
           }
           flushPassiveEffects();
-          if (root2 !== workInProgressRoot || expirationTime !== renderExpirationTime$1) {
-            prepareFreshStack(root2, expirationTime);
-            startWorkOnPendingInteractions(root2, expirationTime);
+          if (root3 !== workInProgressRoot || expirationTime !== renderExpirationTime$1) {
+            prepareFreshStack(root3, expirationTime);
+            startWorkOnPendingInteractions(root3, expirationTime);
           }
           if (workInProgress !== null) {
             var prevExecutionContext = executionContext;
             executionContext |= RenderContext;
             var prevDispatcher = pushDispatcher();
-            var prevInteractions = pushInteractions(root2);
+            var prevInteractions = pushInteractions(root3);
             startWorkLoopTimer(workInProgress);
             do {
               try {
                 workLoopSync();
                 break;
               } catch (thrownValue) {
-                handleError(root2, thrownValue);
+                handleError(root3, thrownValue);
               }
             } while (true);
             resetContextDependencies();
@@ -17041,9 +17041,9 @@
             if (workInProgressRootExitStatus === RootFatalErrored) {
               var fatalError = workInProgressRootFatalError;
               stopInterruptedWorkLoopTimer();
-              prepareFreshStack(root2, expirationTime);
-              markRootSuspendedAtTime(root2, expirationTime);
-              ensureRootIsScheduled(root2);
+              prepareFreshStack(root3, expirationTime);
+              markRootSuspendedAtTime(root3, expirationTime);
+              ensureRootIsScheduled(root3);
               throw fatalError;
             }
             if (workInProgress !== null) {
@@ -17054,17 +17054,17 @@
               }
             } else {
               stopFinishedWorkLoopTimer();
-              root2.finishedWork = root2.current.alternate;
-              root2.finishedExpirationTime = expirationTime;
-              finishSyncRender(root2);
+              root3.finishedWork = root3.current.alternate;
+              root3.finishedExpirationTime = expirationTime;
+              finishSyncRender(root3);
             }
-            ensureRootIsScheduled(root2);
+            ensureRootIsScheduled(root3);
           }
           return null;
         }
-        function finishSyncRender(root2) {
+        function finishSyncRender(root3) {
           workInProgressRoot = null;
-          commitRoot(root2);
+          commitRoot(root3);
         }
         function flushDiscreteUpdates() {
           if ((executionContext & (BatchedContext | RenderContext | CommitContext)) !== NoContext) {
@@ -17085,9 +17085,9 @@
           if (rootsWithPendingDiscreteUpdates !== null) {
             var roots = rootsWithPendingDiscreteUpdates;
             rootsWithPendingDiscreteUpdates = null;
-            roots.forEach(function(expirationTime, root2) {
-              markRootExpiredAtTime(root2, expirationTime);
-              ensureRootIsScheduled(root2);
+            roots.forEach(function(expirationTime, root3) {
+              markRootExpiredAtTime(root3, expirationTime);
+              ensureRootIsScheduled(root3);
             });
             flushSyncCallbackQueue();
           }
@@ -17158,12 +17158,12 @@
             flushSyncCallbackQueue();
           }
         }
-        function prepareFreshStack(root2, expirationTime) {
-          root2.finishedWork = null;
-          root2.finishedExpirationTime = NoWork;
-          var timeoutHandle = root2.timeoutHandle;
+        function prepareFreshStack(root3, expirationTime) {
+          root3.finishedWork = null;
+          root3.finishedExpirationTime = NoWork;
+          var timeoutHandle = root3.timeoutHandle;
           if (timeoutHandle !== noTimeout) {
-            root2.timeoutHandle = noTimeout;
+            root3.timeoutHandle = noTimeout;
             cancelTimeout(timeoutHandle);
           }
           if (workInProgress !== null) {
@@ -17173,8 +17173,8 @@
               interruptedWork = interruptedWork.return;
             }
           }
-          workInProgressRoot = root2;
-          workInProgress = createWorkInProgress(root2.current, null);
+          workInProgressRoot = root3;
+          workInProgress = createWorkInProgress(root3.current, null);
           renderExpirationTime$1 = expirationTime;
           workInProgressRootExitStatus = RootIncomplete;
           workInProgressRootFatalError = null;
@@ -17190,7 +17190,7 @@
             ReactStrictModeWarnings.discardPendingWarnings();
           }
         }
-        function handleError(root2, thrownValue) {
+        function handleError(root3, thrownValue) {
           do {
             try {
               resetContextDependencies();
@@ -17205,7 +17205,7 @@
               if (enableProfilerTimer && workInProgress.mode & ProfileMode) {
                 stopProfilerTimerIfRunningAndRecordDelta(workInProgress, true);
               }
-              throwException(root2, workInProgress.return, workInProgress, thrownValue, renderExpirationTime$1);
+              throwException(root3, workInProgress.return, workInProgress, thrownValue, renderExpirationTime$1);
               workInProgress = completeUnitOfWork(workInProgress);
             } catch (yetAnotherThrownValue) {
               thrownValue = yetAnotherThrownValue;
@@ -17214,7 +17214,7 @@
             return;
           } while (true);
         }
-        function pushDispatcher(root2) {
+        function pushDispatcher(root3) {
           var prevDispatcher = ReactCurrentDispatcher$1.current;
           ReactCurrentDispatcher$1.current = ContextOnlyDispatcher;
           if (prevDispatcher === null) {
@@ -17226,10 +17226,10 @@
         function popDispatcher(prevDispatcher) {
           ReactCurrentDispatcher$1.current = prevDispatcher;
         }
-        function pushInteractions(root2) {
+        function pushInteractions(root3) {
           {
             var prevInteractions = tracing.__interactionsRef.current;
-            tracing.__interactionsRef.current = root2.memoizedInteractions;
+            tracing.__interactionsRef.current = root3.memoizedInteractions;
             return prevInteractions;
           }
         }
@@ -17440,12 +17440,12 @@
           }
           completedWork.childExpirationTime = newChildExpirationTime;
         }
-        function commitRoot(root2) {
+        function commitRoot(root3) {
           var renderPriorityLevel = getCurrentPriorityLevel();
-          runWithPriority$1(ImmediatePriority, commitRootImpl.bind(null, root2, renderPriorityLevel));
+          runWithPriority$1(ImmediatePriority, commitRootImpl.bind(null, root3, renderPriorityLevel));
           return null;
         }
-        function commitRootImpl(root2, renderPriorityLevel) {
+        function commitRootImpl(root3, renderPriorityLevel) {
           do {
             flushPassiveEffects();
           } while (rootWithPendingPassiveEffects !== null);
@@ -17455,26 +17455,26 @@
               throw Error("Should not already be working.");
             }
           }
-          var finishedWork = root2.finishedWork;
-          var expirationTime = root2.finishedExpirationTime;
+          var finishedWork = root3.finishedWork;
+          var expirationTime = root3.finishedExpirationTime;
           if (finishedWork === null) {
             return null;
           }
-          root2.finishedWork = null;
-          root2.finishedExpirationTime = NoWork;
-          if (!(finishedWork !== root2.current)) {
+          root3.finishedWork = null;
+          root3.finishedExpirationTime = NoWork;
+          if (!(finishedWork !== root3.current)) {
             {
               throw Error("Cannot commit the same tree as before. This error is likely caused by a bug in React. Please file an issue.");
             }
           }
-          root2.callbackNode = null;
-          root2.callbackExpirationTime = NoWork;
-          root2.callbackPriority = NoPriority;
-          root2.nextKnownPendingLevel = NoWork;
+          root3.callbackNode = null;
+          root3.callbackExpirationTime = NoWork;
+          root3.callbackPriority = NoPriority;
+          root3.nextKnownPendingLevel = NoWork;
           startCommitTimer();
           var remainingExpirationTimeBeforeCommit = getRemainingExpirationTime(finishedWork);
-          markRootFinishedAtTime(root2, expirationTime, remainingExpirationTimeBeforeCommit);
-          if (root2 === workInProgressRoot) {
+          markRootFinishedAtTime(root3, expirationTime, remainingExpirationTimeBeforeCommit);
+          if (root3 === workInProgressRoot) {
             workInProgressRoot = null;
             workInProgress = null;
             renderExpirationTime$1 = NoWork;
@@ -17493,10 +17493,10 @@
           if (firstEffect !== null) {
             var prevExecutionContext = executionContext;
             executionContext |= CommitContext;
-            var prevInteractions = pushInteractions(root2);
+            var prevInteractions = pushInteractions(root3);
             ReactCurrentOwner$2.current = null;
             startCommitSnapshotEffectsTimer();
-            prepareForCommit(root2.containerInfo);
+            prepareForCommit(root3.containerInfo);
             nextEffect = firstEffect;
             do {
               {
@@ -17521,7 +17521,7 @@
             nextEffect = firstEffect;
             do {
               {
-                invokeGuardedCallback(null, commitMutationEffects, null, root2, renderPriorityLevel);
+                invokeGuardedCallback(null, commitMutationEffects, null, root3, renderPriorityLevel);
                 if (hasCaughtError()) {
                   if (!(nextEffect !== null)) {
                     {
@@ -17535,13 +17535,13 @@
               }
             } while (nextEffect !== null);
             stopCommitHostEffectsTimer();
-            resetAfterCommit(root2.containerInfo);
-            root2.current = finishedWork;
+            resetAfterCommit(root3.containerInfo);
+            root3.current = finishedWork;
             startCommitLifeCyclesTimer();
             nextEffect = firstEffect;
             do {
               {
-                invokeGuardedCallback(null, commitLayoutEffects, null, root2, expirationTime);
+                invokeGuardedCallback(null, commitLayoutEffects, null, root3, expirationTime);
                 if (hasCaughtError()) {
                   if (!(nextEffect !== null)) {
                     {
@@ -17562,7 +17562,7 @@
             }
             executionContext = prevExecutionContext;
           } else {
-            root2.current = finishedWork;
+            root3.current = finishedWork;
             startCommitSnapshotEffectsTimer();
             stopCommitSnapshotEffectsTimer();
             {
@@ -17577,7 +17577,7 @@
           var rootDidHavePassiveEffects = rootDoesHavePassiveEffects;
           if (rootDoesHavePassiveEffects) {
             rootDoesHavePassiveEffects = false;
-            rootWithPendingPassiveEffects = root2;
+            rootWithPendingPassiveEffects = root3;
             pendingPassiveEffectsExpirationTime = expirationTime;
             pendingPassiveEffectsRenderPriority = renderPriorityLevel;
           } else {
@@ -17588,38 +17588,38 @@
               nextEffect = nextNextEffect;
             }
           }
-          var remainingExpirationTime = root2.firstPendingTime;
+          var remainingExpirationTime = root3.firstPendingTime;
           if (remainingExpirationTime !== NoWork) {
             {
               if (spawnedWorkDuringRender !== null) {
                 var expirationTimes = spawnedWorkDuringRender;
                 spawnedWorkDuringRender = null;
                 for (var i = 0; i < expirationTimes.length; i++) {
-                  scheduleInteractions(root2, expirationTimes[i], root2.memoizedInteractions);
+                  scheduleInteractions(root3, expirationTimes[i], root3.memoizedInteractions);
                 }
               }
-              schedulePendingInteractions(root2, remainingExpirationTime);
+              schedulePendingInteractions(root3, remainingExpirationTime);
             }
           } else {
             legacyErrorBoundariesThatAlreadyFailed = null;
           }
           {
             if (!rootDidHavePassiveEffects) {
-              finishPendingInteractions(root2, expirationTime);
+              finishPendingInteractions(root3, expirationTime);
             }
           }
           if (remainingExpirationTime === Sync) {
-            if (root2 === rootWithNestedUpdates) {
+            if (root3 === rootWithNestedUpdates) {
               nestedUpdateCount++;
             } else {
               nestedUpdateCount = 0;
-              rootWithNestedUpdates = root2;
+              rootWithNestedUpdates = root3;
             }
           } else {
             nestedUpdateCount = 0;
           }
           onCommitRoot(finishedWork.stateNode, expirationTime);
-          ensureRootIsScheduled(root2);
+          ensureRootIsScheduled(root3);
           if (hasUncaughtError) {
             hasUncaughtError = false;
             var _error3 = firstUncaughtError;
@@ -17654,7 +17654,7 @@
             nextEffect = nextEffect.nextEffect;
           }
         }
-        function commitMutationEffects(root2, renderPriorityLevel) {
+        function commitMutationEffects(root3, renderPriorityLevel) {
           while (nextEffect !== null) {
             setCurrentFiber(nextEffect);
             var effectTag = nextEffect.effectTag;
@@ -17697,7 +17697,7 @@
                 break;
               }
               case Deletion: {
-                commitDeletion(root2, nextEffect, renderPriorityLevel);
+                commitDeletion(root3, nextEffect, renderPriorityLevel);
                 break;
               }
             }
@@ -17706,14 +17706,14 @@
             nextEffect = nextEffect.nextEffect;
           }
         }
-        function commitLayoutEffects(root2, committedExpirationTime) {
+        function commitLayoutEffects(root3, committedExpirationTime) {
           while (nextEffect !== null) {
             setCurrentFiber(nextEffect);
             var effectTag = nextEffect.effectTag;
             if (effectTag & (Update | Callback)) {
               recordEffect();
               var current2 = nextEffect.alternate;
-              commitLifeCycles(root2, current2, nextEffect);
+              commitLifeCycles(root3, current2, nextEffect);
             }
             if (effectTag & Ref) {
               recordEffect();
@@ -17734,7 +17734,7 @@
           if (rootWithPendingPassiveEffects === null) {
             return false;
           }
-          var root2 = rootWithPendingPassiveEffects;
+          var root3 = rootWithPendingPassiveEffects;
           var expirationTime = pendingPassiveEffectsExpirationTime;
           rootWithPendingPassiveEffects = null;
           pendingPassiveEffectsExpirationTime = NoWork;
@@ -17745,9 +17745,9 @@
           }
           var prevExecutionContext = executionContext;
           executionContext |= CommitContext;
-          var prevInteractions = pushInteractions(root2);
+          var prevInteractions = pushInteractions(root3);
           {
-            var _effect2 = root2.current.firstEffect;
+            var _effect2 = root3.current.firstEffect;
             while (_effect2 !== null) {
               {
                 setCurrentFiber(_effect2);
@@ -17770,7 +17770,7 @@
           }
           {
             popInteractions(prevInteractions);
-            finishPendingInteractions(root2, expirationTime);
+            finishPendingInteractions(root3, expirationTime);
           }
           executionContext = prevExecutionContext;
           flushSyncCallbackQueue();
@@ -17798,10 +17798,10 @@
           var errorInfo = createCapturedValue(error2, sourceFiber);
           var update = createRootErrorUpdate(rootFiber, errorInfo, Sync);
           enqueueUpdate(rootFiber, update);
-          var root2 = markUpdateTimeFromFiberToRoot(rootFiber, Sync);
-          if (root2 !== null) {
-            ensureRootIsScheduled(root2);
-            schedulePendingInteractions(root2, Sync);
+          var root3 = markUpdateTimeFromFiberToRoot(rootFiber, Sync);
+          if (root3 !== null) {
+            ensureRootIsScheduled(root3);
+            schedulePendingInteractions(root3, Sync);
           }
         }
         function captureCommitPhaseError(sourceFiber, error2) {
@@ -17821,10 +17821,10 @@
                 var errorInfo = createCapturedValue(error2, sourceFiber);
                 var update = createClassErrorUpdate(fiber, errorInfo, Sync);
                 enqueueUpdate(fiber, update);
-                var root2 = markUpdateTimeFromFiberToRoot(fiber, Sync);
-                if (root2 !== null) {
-                  ensureRootIsScheduled(root2);
-                  schedulePendingInteractions(root2, Sync);
+                var root3 = markUpdateTimeFromFiberToRoot(fiber, Sync);
+                if (root3 !== null) {
+                  ensureRootIsScheduled(root3);
+                  schedulePendingInteractions(root3, Sync);
                 }
                 return;
               }
@@ -17832,29 +17832,29 @@
             fiber = fiber.return;
           }
         }
-        function pingSuspendedRoot(root2, thenable, suspendedTime) {
-          var pingCache = root2.pingCache;
+        function pingSuspendedRoot(root3, thenable, suspendedTime) {
+          var pingCache = root3.pingCache;
           if (pingCache !== null) {
             pingCache.delete(thenable);
           }
-          if (workInProgressRoot === root2 && renderExpirationTime$1 === suspendedTime) {
+          if (workInProgressRoot === root3 && renderExpirationTime$1 === suspendedTime) {
             if (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && workInProgressRootLatestProcessedExpirationTime === Sync && now() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS) {
-              prepareFreshStack(root2, renderExpirationTime$1);
+              prepareFreshStack(root3, renderExpirationTime$1);
             } else {
               workInProgressRootHasPendingPing = true;
             }
             return;
           }
-          if (!isRootSuspendedAtTime(root2, suspendedTime)) {
+          if (!isRootSuspendedAtTime(root3, suspendedTime)) {
             return;
           }
-          var lastPingedTime = root2.lastPingedTime;
+          var lastPingedTime = root3.lastPingedTime;
           if (lastPingedTime !== NoWork && lastPingedTime < suspendedTime) {
             return;
           }
-          root2.lastPingedTime = suspendedTime;
-          ensureRootIsScheduled(root2);
-          schedulePendingInteractions(root2, suspendedTime);
+          root3.lastPingedTime = suspendedTime;
+          ensureRootIsScheduled(root3);
+          schedulePendingInteractions(root3, suspendedTime);
         }
         function retryTimedOutBoundary(boundaryFiber, retryTime) {
           if (retryTime === NoWork) {
@@ -17862,10 +17862,10 @@
             var currentTime = requestCurrentTimeForUpdate();
             retryTime = computeExpirationForFiber(currentTime, boundaryFiber, suspenseConfig);
           }
-          var root2 = markUpdateTimeFromFiberToRoot(boundaryFiber, retryTime);
-          if (root2 !== null) {
-            ensureRootIsScheduled(root2);
-            schedulePendingInteractions(root2, retryTime);
+          var root3 = markUpdateTimeFromFiberToRoot(boundaryFiber, retryTime);
+          if (root3 !== null) {
+            ensureRootIsScheduled(root3);
+            schedulePendingInteractions(root3, retryTime);
           }
         }
         function resolveRetryThenable(boundaryFiber, thenable) {
@@ -18055,8 +18055,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             }
           }
         }
-        function computeThreadID(root2, expirationTime) {
-          return expirationTime * 1e3 + root2.interactionThreadID;
+        function computeThreadID(root3, expirationTime) {
+          return expirationTime * 1e3 + root3.interactionThreadID;
         }
         function markSpawnedWork(expirationTime) {
           if (spawnedWorkDuringRender === null) {
@@ -18065,9 +18065,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             spawnedWorkDuringRender.push(expirationTime);
           }
         }
-        function scheduleInteractions(root2, expirationTime, interactions) {
+        function scheduleInteractions(root3, expirationTime, interactions) {
           if (interactions.size > 0) {
-            var pendingInteractionMap = root2.pendingInteractionMap;
+            var pendingInteractionMap = root3.pendingInteractionMap;
             var pendingInteractions = pendingInteractionMap.get(expirationTime);
             if (pendingInteractions != null) {
               interactions.forEach(function(interaction) {
@@ -18084,28 +18084,28 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             }
             var subscriber = tracing.__subscriberRef.current;
             if (subscriber !== null) {
-              var threadID = computeThreadID(root2, expirationTime);
+              var threadID = computeThreadID(root3, expirationTime);
               subscriber.onWorkScheduled(interactions, threadID);
             }
           }
         }
-        function schedulePendingInteractions(root2, expirationTime) {
-          scheduleInteractions(root2, expirationTime, tracing.__interactionsRef.current);
+        function schedulePendingInteractions(root3, expirationTime) {
+          scheduleInteractions(root3, expirationTime, tracing.__interactionsRef.current);
         }
-        function startWorkOnPendingInteractions(root2, expirationTime) {
+        function startWorkOnPendingInteractions(root3, expirationTime) {
           var interactions = new Set();
-          root2.pendingInteractionMap.forEach(function(scheduledInteractions, scheduledExpirationTime) {
+          root3.pendingInteractionMap.forEach(function(scheduledInteractions, scheduledExpirationTime) {
             if (scheduledExpirationTime >= expirationTime) {
               scheduledInteractions.forEach(function(interaction) {
                 return interactions.add(interaction);
               });
             }
           });
-          root2.memoizedInteractions = interactions;
+          root3.memoizedInteractions = interactions;
           if (interactions.size > 0) {
             var subscriber = tracing.__subscriberRef.current;
             if (subscriber !== null) {
-              var threadID = computeThreadID(root2, expirationTime);
+              var threadID = computeThreadID(root3, expirationTime);
               try {
                 subscriber.onWorkStarted(interactions, threadID);
               } catch (error2) {
@@ -18116,21 +18116,21 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             }
           }
         }
-        function finishPendingInteractions(root2, committedExpirationTime) {
-          var earliestRemainingTimeAfterCommit = root2.firstPendingTime;
+        function finishPendingInteractions(root3, committedExpirationTime) {
+          var earliestRemainingTimeAfterCommit = root3.firstPendingTime;
           var subscriber;
           try {
             subscriber = tracing.__subscriberRef.current;
-            if (subscriber !== null && root2.memoizedInteractions.size > 0) {
-              var threadID = computeThreadID(root2, committedExpirationTime);
-              subscriber.onWorkStopped(root2.memoizedInteractions, threadID);
+            if (subscriber !== null && root3.memoizedInteractions.size > 0) {
+              var threadID = computeThreadID(root3, committedExpirationTime);
+              subscriber.onWorkStopped(root3.memoizedInteractions, threadID);
             }
           } catch (error2) {
             scheduleCallback(ImmediatePriority, function() {
               throw error2;
             });
           } finally {
-            var pendingInteractionMap = root2.pendingInteractionMap;
+            var pendingInteractionMap = root3.pendingInteractionMap;
             pendingInteractionMap.forEach(function(scheduledInteractions, scheduledExpirationTime) {
               if (scheduledExpirationTime > earliestRemainingTimeAfterCommit) {
                 pendingInteractionMap.delete(scheduledExpirationTime);
@@ -18173,9 +18173,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             var rendererID = hook.inject(internals);
             if (true) {
               if (typeof hook.onScheduleFiberRoot === "function") {
-                onScheduleFiberRoot = function(root2, children) {
+                onScheduleFiberRoot = function(root3, children) {
                   try {
-                    hook.onScheduleFiberRoot(rendererID, root2, children);
+                    hook.onScheduleFiberRoot(rendererID, root3, children);
                   } catch (err) {
                     if (!hasLoggedError) {
                       hasLoggedError = true;
@@ -18185,15 +18185,15 @@ For more info, visit https://fb.me/react-mock-scheduler`);
                 };
               }
             }
-            onCommitFiberRoot = function(root2, expirationTime) {
+            onCommitFiberRoot = function(root3, expirationTime) {
               try {
-                var didError = (root2.current.effectTag & DidCapture) === DidCapture;
+                var didError = (root3.current.effectTag & DidCapture) === DidCapture;
                 if (enableProfilerTimer) {
                   var currentTime = getCurrentTime();
                   var priorityLevel = inferPriorityFromExpirationTime(currentTime, expirationTime);
-                  hook.onCommitFiberRoot(rendererID, root2, priorityLevel, didError);
+                  hook.onCommitFiberRoot(rendererID, root3, priorityLevel, didError);
                 } else {
-                  hook.onCommitFiberRoot(rendererID, root2, void 0, didError);
+                  hook.onCommitFiberRoot(rendererID, root3, void 0, didError);
                 }
               } catch (err) {
                 if (true) {
@@ -18223,14 +18223,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           }
           return true;
         }
-        function onScheduleRoot(root2, children) {
+        function onScheduleRoot(root3, children) {
           if (typeof onScheduleFiberRoot === "function") {
-            onScheduleFiberRoot(root2, children);
+            onScheduleFiberRoot(root3, children);
           }
         }
-        function onCommitRoot(root2, expirationTime) {
+        function onCommitRoot(root3, expirationTime) {
           if (typeof onCommitFiberRoot === "function") {
-            onCommitFiberRoot(root2, expirationTime);
+            onCommitFiberRoot(root3, expirationTime);
           }
         }
         function onCommitUnmount(fiber) {
@@ -18668,69 +18668,69 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           }
         }
         function createFiberRoot(containerInfo, tag, hydrate2, hydrationCallbacks) {
-          var root2 = new FiberRootNode(containerInfo, tag, hydrate2);
+          var root3 = new FiberRootNode(containerInfo, tag, hydrate2);
           var uninitializedFiber = createHostRootFiber(tag);
-          root2.current = uninitializedFiber;
-          uninitializedFiber.stateNode = root2;
+          root3.current = uninitializedFiber;
+          uninitializedFiber.stateNode = root3;
           initializeUpdateQueue(uninitializedFiber);
-          return root2;
+          return root3;
         }
-        function isRootSuspendedAtTime(root2, expirationTime) {
-          var firstSuspendedTime = root2.firstSuspendedTime;
-          var lastSuspendedTime = root2.lastSuspendedTime;
+        function isRootSuspendedAtTime(root3, expirationTime) {
+          var firstSuspendedTime = root3.firstSuspendedTime;
+          var lastSuspendedTime = root3.lastSuspendedTime;
           return firstSuspendedTime !== NoWork && firstSuspendedTime >= expirationTime && lastSuspendedTime <= expirationTime;
         }
-        function markRootSuspendedAtTime(root2, expirationTime) {
-          var firstSuspendedTime = root2.firstSuspendedTime;
-          var lastSuspendedTime = root2.lastSuspendedTime;
+        function markRootSuspendedAtTime(root3, expirationTime) {
+          var firstSuspendedTime = root3.firstSuspendedTime;
+          var lastSuspendedTime = root3.lastSuspendedTime;
           if (firstSuspendedTime < expirationTime) {
-            root2.firstSuspendedTime = expirationTime;
+            root3.firstSuspendedTime = expirationTime;
           }
           if (lastSuspendedTime > expirationTime || firstSuspendedTime === NoWork) {
-            root2.lastSuspendedTime = expirationTime;
+            root3.lastSuspendedTime = expirationTime;
           }
-          if (expirationTime <= root2.lastPingedTime) {
-            root2.lastPingedTime = NoWork;
+          if (expirationTime <= root3.lastPingedTime) {
+            root3.lastPingedTime = NoWork;
           }
-          if (expirationTime <= root2.lastExpiredTime) {
-            root2.lastExpiredTime = NoWork;
+          if (expirationTime <= root3.lastExpiredTime) {
+            root3.lastExpiredTime = NoWork;
           }
         }
-        function markRootUpdatedAtTime(root2, expirationTime) {
-          var firstPendingTime = root2.firstPendingTime;
+        function markRootUpdatedAtTime(root3, expirationTime) {
+          var firstPendingTime = root3.firstPendingTime;
           if (expirationTime > firstPendingTime) {
-            root2.firstPendingTime = expirationTime;
+            root3.firstPendingTime = expirationTime;
           }
-          var firstSuspendedTime = root2.firstSuspendedTime;
+          var firstSuspendedTime = root3.firstSuspendedTime;
           if (firstSuspendedTime !== NoWork) {
             if (expirationTime >= firstSuspendedTime) {
-              root2.firstSuspendedTime = root2.lastSuspendedTime = root2.nextKnownPendingLevel = NoWork;
-            } else if (expirationTime >= root2.lastSuspendedTime) {
-              root2.lastSuspendedTime = expirationTime + 1;
+              root3.firstSuspendedTime = root3.lastSuspendedTime = root3.nextKnownPendingLevel = NoWork;
+            } else if (expirationTime >= root3.lastSuspendedTime) {
+              root3.lastSuspendedTime = expirationTime + 1;
             }
-            if (expirationTime > root2.nextKnownPendingLevel) {
-              root2.nextKnownPendingLevel = expirationTime;
+            if (expirationTime > root3.nextKnownPendingLevel) {
+              root3.nextKnownPendingLevel = expirationTime;
             }
           }
         }
-        function markRootFinishedAtTime(root2, finishedExpirationTime, remainingExpirationTime) {
-          root2.firstPendingTime = remainingExpirationTime;
-          if (finishedExpirationTime <= root2.lastSuspendedTime) {
-            root2.firstSuspendedTime = root2.lastSuspendedTime = root2.nextKnownPendingLevel = NoWork;
-          } else if (finishedExpirationTime <= root2.firstSuspendedTime) {
-            root2.firstSuspendedTime = finishedExpirationTime - 1;
+        function markRootFinishedAtTime(root3, finishedExpirationTime, remainingExpirationTime) {
+          root3.firstPendingTime = remainingExpirationTime;
+          if (finishedExpirationTime <= root3.lastSuspendedTime) {
+            root3.firstSuspendedTime = root3.lastSuspendedTime = root3.nextKnownPendingLevel = NoWork;
+          } else if (finishedExpirationTime <= root3.firstSuspendedTime) {
+            root3.firstSuspendedTime = finishedExpirationTime - 1;
           }
-          if (finishedExpirationTime <= root2.lastPingedTime) {
-            root2.lastPingedTime = NoWork;
+          if (finishedExpirationTime <= root3.lastPingedTime) {
+            root3.lastPingedTime = NoWork;
           }
-          if (finishedExpirationTime <= root2.lastExpiredTime) {
-            root2.lastExpiredTime = NoWork;
+          if (finishedExpirationTime <= root3.lastExpiredTime) {
+            root3.lastExpiredTime = NoWork;
           }
         }
-        function markRootExpiredAtTime(root2, expirationTime) {
-          var lastExpiredTime = root2.lastExpiredTime;
+        function markRootExpiredAtTime(root3, expirationTime) {
+          var lastExpiredTime = root3.lastExpiredTime;
           if (lastExpiredTime === NoWork || lastExpiredTime > expirationTime) {
-            root2.lastExpiredTime = expirationTime;
+            root3.lastExpiredTime = expirationTime;
           }
         }
         var didWarnAboutNestedUpdates;
@@ -18986,14 +18986,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           this._internalRoot = createRootImpl(container, tag, options);
         }
         ReactDOMRoot.prototype.render = ReactDOMBlockingRoot.prototype.render = function(children) {
-          var root2 = this._internalRoot;
+          var root3 = this._internalRoot;
           {
             if (typeof arguments[1] === "function") {
               error("render(...): does not support the second callback argument. To execute a side effect after rendering, declare it in a component body with useEffect().");
             }
-            var container = root2.containerInfo;
+            var container = root3.containerInfo;
             if (container.nodeType !== COMMENT_NODE) {
-              var hostInstance = findHostInstanceWithNoPortals(root2.current);
+              var hostInstance = findHostInstanceWithNoPortals(root3.current);
               if (hostInstance) {
                 if (hostInstance.parentNode !== container) {
                   error("render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.");
@@ -19001,7 +19001,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               }
             }
           }
-          updateContainer(children, root2, null, null);
+          updateContainer(children, root3, null, null);
         };
         ReactDOMRoot.prototype.unmount = ReactDOMBlockingRoot.prototype.unmount = function() {
           {
@@ -19009,22 +19009,22 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               error("unmount(...): does not support a callback argument. To execute a side effect after rendering, declare it in a component body with useEffect().");
             }
           }
-          var root2 = this._internalRoot;
-          var container = root2.containerInfo;
-          updateContainer(null, root2, null, function() {
+          var root3 = this._internalRoot;
+          var container = root3.containerInfo;
+          updateContainer(null, root3, null, function() {
             unmarkContainerAsRoot(container);
           });
         };
         function createRootImpl(container, tag, options) {
           var hydrate2 = options != null && options.hydrate === true;
           var hydrationCallbacks = options != null && options.hydrationOptions || null;
-          var root2 = createContainer(container, tag, hydrate2);
-          markContainerAsRoot(root2.current, container);
+          var root3 = createContainer(container, tag, hydrate2);
+          markContainerAsRoot(root3.current, container);
           if (hydrate2 && tag !== LegacyRoot) {
             var doc = container.nodeType === DOCUMENT_NODE ? container : container.ownerDocument;
             eagerlyTrapReplayableEvents(container, doc);
           }
-          return root2;
+          return root3;
         }
         function createLegacyRoot(container, options) {
           return new ReactDOMBlockingRoot(container, LegacyRoot, options);
@@ -19107,11 +19107,11 @@ For more info, visit https://fb.me/react-mock-scheduler`);
             topLevelUpdateWarnings(container);
             warnOnInvalidCallback$1(callback === void 0 ? null : callback, "render");
           }
-          var root2 = container._reactRootContainer;
+          var root3 = container._reactRootContainer;
           var fiberRoot;
-          if (!root2) {
-            root2 = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);
-            fiberRoot = root2._internalRoot;
+          if (!root3) {
+            root3 = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);
+            fiberRoot = root3._internalRoot;
             if (typeof callback === "function") {
               var originalCallback = callback;
               callback = function() {
@@ -19123,7 +19123,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
               updateContainer(children, fiberRoot, parentComponent, callback);
             });
           } else {
-            fiberRoot = root2._internalRoot;
+            fiberRoot = root3._internalRoot;
             if (typeof callback === "function") {
               var _originalCallback = callback;
               callback = function() {
@@ -19328,6 +19328,22 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   // src/App.js
   const React = __toModule(require_react());
   const ReactDOM = __toModule(require_react_dom());
-  ReactDOM.render(reactElementWithoutJSX, document.getElementById("root"));
+  var reactElementWithoutJSX = React.createElement("div", {id: "main"}, [
+    React.createElement("h1", {id: "heading"}, "Hello World")
+  ]);
+  let root = document.getElementById("root");
+  ReactDOM.render(reactElementWithoutJSX, root);
+  let customElement = React.createElement("div", {
+    id: "custom"
+  }, [
+    React.createElement("p", {id: "customtext"}, "This is a custom element.")
+  ]);
+  ReactDOM.render(customElement, root);
+  var reactElementWithJSX = React.createElement("div", {
+    className: "main"
+  }, React.createElement("h1", {
+    className: "heading"
+  }, "Hello World from JSX"));
+  ReactDOM.render(reactElementWithJSX, root);
 })();
 //# sourceMappingURL=bundle.js.map
