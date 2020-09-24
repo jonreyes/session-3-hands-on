@@ -29,15 +29,6 @@ class ClassComponent extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <FunctionalComponent />,
-  document.getElementById('root')
-);
-ReactDOM.render(
-  <FunctionalComponent />,
-  document.getElementById('root')
-);
-
 const CustomFunctionalComponent = () => {
   return (
     <div id="CustomFunctionalComponent">
@@ -45,11 +36,6 @@ const CustomFunctionalComponent = () => {
     </div>
   )
 };
-
-ReactDOM.render(
-  <CustomFunctionalComponent/>,
-  document.getElementById('root')
-);
 
 class CustomClassComponent extends React.Component {
   constructor(props){
@@ -65,6 +51,12 @@ class CustomClassComponent extends React.Component {
 }
 
 ReactDOM.render(
-  <CustomClassComponent/>,
+  <>
+    <FunctionalComponent/>
+    <ClassComponent/>
+    <CustomFunctionalComponent/>
+    <CustomClassComponent/>
+  </>
+  ,
   document.getElementById('root')
 )

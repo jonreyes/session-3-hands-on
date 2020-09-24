@@ -2573,7 +2573,7 @@
         var HostPortal = 4;
         var HostComponent = 5;
         var HostText = 6;
-        var Fragment = 7;
+        var Fragment2 = 7;
         var Mode = 8;
         var ContextConsumer = 9;
         var ContextProvider = 10;
@@ -3380,7 +3380,7 @@
             case HostRoot:
             case HostPortal:
             case HostText:
-            case Fragment:
+            case Fragment2:
             case ContextProvider:
             case ContextConsumer:
               return "";
@@ -9178,7 +9178,7 @@
             case HostComponent:
             case HostText:
             case HostPortal:
-            case Fragment:
+            case Fragment2:
             case ContextProvider:
             case ContextConsumer:
             case Mode:
@@ -11555,7 +11555,7 @@
             }
           }
           function updateFragment2(returnFiber, current2, fragment, expirationTime, key) {
-            if (current2 === null || current2.tag !== Fragment) {
+            if (current2 === null || current2.tag !== Fragment2) {
               var created = createFiberFromFragment(fragment, returnFiber.mode, expirationTime, key);
               created.return = returnFiber;
               return created;
@@ -11923,7 +11923,7 @@
             while (child !== null) {
               if (child.key === key) {
                 switch (child.tag) {
-                  case Fragment: {
+                  case Fragment2: {
                     if (element.type === REACT_FRAGMENT_TYPE) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
@@ -15081,7 +15081,7 @@
               var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
               return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderExpirationTime2);
             }
-            case Fragment:
+            case Fragment2:
               return updateFragment(current2, workInProgress2, renderExpirationTime2);
             case Mode:
               return updateMode(current2, workInProgress2, renderExpirationTime2);
@@ -15230,7 +15230,7 @@
             case SimpleMemoComponent:
             case FunctionComponent:
             case ForwardRef:
-            case Fragment:
+            case Fragment2:
             case Mode:
             case Profiler:
             case ContextConsumer:
@@ -18544,7 +18544,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           return fiber;
         }
         function createFiberFromFragment(elements, mode, expirationTime, key) {
-          var fiber = createFiber(Fragment, elements, key, mode);
+          var fiber = createFiber(Fragment2, elements, key, mode);
           fiber.expirationTime = expirationTime;
           return fiber;
         }
@@ -19347,8 +19347,6 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       }, "Hello World from ClassComponent")));
     }
   }
-  ReactDOM.render(React.createElement(FunctionalComponent, null), document.getElementById("root"));
-  ReactDOM.render(React.createElement(FunctionalComponent, null), document.getElementById("root"));
   const CustomFunctionalComponent = () => {
     return React.createElement("div", {
       id: "CustomFunctionalComponent"
@@ -19356,7 +19354,6 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       id: "customtext"
     }, "This is a custom Functional Component."));
   };
-  ReactDOM.render(React.createElement(CustomFunctionalComponent, null), document.getElementById("root"));
   class CustomClassComponent extends React.Component {
     constructor(props) {
       super(props);
@@ -19369,6 +19366,6 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       }, "This is a custom Class Component."));
     }
   }
-  ReactDOM.render(React.createElement(CustomClassComponent, null), document.getElementById("root"));
+  ReactDOM.render(React.createElement(React.Fragment, null, React.createElement(FunctionalComponent, null), React.createElement(ClassComponent, null), React.createElement(CustomFunctionalComponent, null), React.createElement(CustomClassComponent, null)), document.getElementById("root"));
 })();
 //# sourceMappingURL=bundle.js.map
