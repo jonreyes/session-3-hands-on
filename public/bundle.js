@@ -19325,41 +19325,44 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
   });
 
+  // src/Name.js
+  const React3 = __toModule(require_react());
+  const ReactDOM3 = __toModule(require_react_dom());
+  class Name3 extends React3.Component {
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return React3.createElement("span", null, this.props.value);
+    }
+  }
+  const Name_default = Name3;
+
   // src/Greeting.js
   const React2 = __toModule(require_react());
   const ReactDOM2 = __toModule(require_react_dom());
   const Greetings = (props) => {
-    return React2.createElement("div", null, React2.createElement("h1", null, props.message));
+    return React2.createElement("div", null, React2.createElement("h1", null, props.message, ", ", React2.createElement(Name_default, {
+      value: "Jon"
+    }), "!"));
   };
   const Greeting_default = Greetings;
-
-  // src/Name.js
-  const React3 = __toModule(require_react());
-  const ReactDOM3 = __toModule(require_react_dom());
-  class Name2 extends React3.Component {
-    constructor(props) {
-      super(props);
-    }
-    render() {
-      const {person} = this.props;
-      return React3.createElement("div", null, React3.createElement("p", null, person));
-    }
-  }
-  const Name_default = Name2;
 
   // src/Welcome.js
   const React4 = __toModule(require_react());
   const ReactDOM4 = __toModule(require_react_dom());
-  class Welcome2 extends React4.Component {
+  const FunctionalWelcome = (props) => {
+    return React4.createElement("div", null, React4.createElement("p", null, React4.createElement("i", null, props.welcome, " to ", props.course, " from ", props.tutor, "!")));
+  };
+  class ClassWelcome extends React4.Component {
     constructor(props) {
       super(props);
     }
     render() {
-      const {welcome, course} = this.props;
-      return React4.createElement("div", null, React4.createElement("p", null, welcome, " to ", course));
+      const {welcome, course, tutor} = this.props;
+      return React4.createElement("div", null, React4.createElement("p", null, React4.createElement("i", null, welcome, " to ", course, " from ", tutor, "!")));
     }
   }
-  const Welcome_default = Welcome2;
 
   // src/App.js
   const React = __toModule(require_react());
@@ -19370,12 +19373,15 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
     render() {
       return React.createElement("div", null, React.createElement(Greeting_default, {
-        message: "Good Evening"
-      }), React.createElement(Name_default, {
-        person: "Gokkul"
-      }), React.createElement(Welcome_default, {
+        message: "Good Afternoon"
+      }), React.createElement(FunctionalWelcome, {
         welcome: "Welcome",
-        course: "React"
+        course: "React",
+        tutor: "Ask Apps"
+      }), React.createElement(ClassWelcome, {
+        welcome: "Welcome",
+        course: "React",
+        tutor: "Ask Apps"
       }));
     }
   }

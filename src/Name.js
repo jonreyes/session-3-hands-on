@@ -8,9 +8,10 @@ class Name extends React.Component {
   
   render() {
     // console.log(this.props);
-
     return (
-       
+      <span>
+        {this.props.value}
+      </span>
     )
   }
 }
