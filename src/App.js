@@ -7,23 +7,12 @@ var reactElementWithoutJSX = React.createElement('div', { id: 'main' }, [
     React.createElement('h1', { id: 'heading' }, 'Hello World')
   ]);
 
-
 // Now that you have seen how to create an Element, try creating your own element and change the value in line 14 to our new variable
 let root = document.getElementById('root');
-
-ReactDOM.render(
-  reactElementWithoutJSX,
-  root
-);
 
 let customElement = React.createElement('div',{
   id: 'custom'}, [
     React.createElement('p',{id:'customtext'},'This is a custom element.')]
-);
-
-ReactDOM.render(
-  customElement,
-  root
 );
 
 var reactElementWithJSX = 
@@ -32,6 +21,10 @@ var reactElementWithJSX =
 </div>
 
 ReactDOM.render(
-  reactElementWithJSX,
+  <>
+  {reactElementWithoutJSX}
+  {customElement}
+  {reactElementWithJSX}
+  </>,
   root
 );

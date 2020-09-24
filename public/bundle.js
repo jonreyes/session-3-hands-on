@@ -2573,7 +2573,7 @@
         var HostPortal = 4;
         var HostComponent = 5;
         var HostText = 6;
-        var Fragment = 7;
+        var Fragment2 = 7;
         var Mode = 8;
         var ContextConsumer = 9;
         var ContextProvider = 10;
@@ -3380,7 +3380,7 @@
             case HostRoot:
             case HostPortal:
             case HostText:
-            case Fragment:
+            case Fragment2:
             case ContextProvider:
             case ContextConsumer:
               return "";
@@ -9178,7 +9178,7 @@
             case HostComponent:
             case HostText:
             case HostPortal:
-            case Fragment:
+            case Fragment2:
             case ContextProvider:
             case ContextConsumer:
             case Mode:
@@ -11555,7 +11555,7 @@
             }
           }
           function updateFragment2(returnFiber, current2, fragment, expirationTime, key) {
-            if (current2 === null || current2.tag !== Fragment) {
+            if (current2 === null || current2.tag !== Fragment2) {
               var created = createFiberFromFragment(fragment, returnFiber.mode, expirationTime, key);
               created.return = returnFiber;
               return created;
@@ -11923,7 +11923,7 @@
             while (child !== null) {
               if (child.key === key) {
                 switch (child.tag) {
-                  case Fragment: {
+                  case Fragment2: {
                     if (element.type === REACT_FRAGMENT_TYPE) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
@@ -15081,7 +15081,7 @@
               var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
               return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderExpirationTime2);
             }
-            case Fragment:
+            case Fragment2:
               return updateFragment(current2, workInProgress2, renderExpirationTime2);
             case Mode:
               return updateMode(current2, workInProgress2, renderExpirationTime2);
@@ -15230,7 +15230,7 @@
             case SimpleMemoComponent:
             case FunctionComponent:
             case ForwardRef:
-            case Fragment:
+            case Fragment2:
             case Mode:
             case Profiler:
             case ContextConsumer:
@@ -18544,7 +18544,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           return fiber;
         }
         function createFiberFromFragment(elements, mode, expirationTime, key) {
-          var fiber = createFiber(Fragment, elements, key, mode);
+          var fiber = createFiber(Fragment2, elements, key, mode);
           fiber.expirationTime = expirationTime;
           return fiber;
         }
@@ -19332,18 +19332,16 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     React.createElement("h1", {id: "heading"}, "Hello World")
   ]);
   let root = document.getElementById("root");
-  ReactDOM.render(reactElementWithoutJSX, root);
   let customElement = React.createElement("div", {
     id: "custom"
   }, [
     React.createElement("p", {id: "customtext"}, "This is a custom element.")
   ]);
-  ReactDOM.render(customElement, root);
   var reactElementWithJSX = React.createElement("div", {
     className: "main"
   }, React.createElement("h1", {
     className: "heading"
   }, "Hello World from JSX"));
-  ReactDOM.render(reactElementWithJSX, root);
+  ReactDOM.render(React.createElement(React.Fragment, null, reactElementWithoutJSX, customElement, reactElementWithJSX), root);
 })();
 //# sourceMappingURL=bundle.js.map
